@@ -42,4 +42,13 @@ describe('testing servers with chai-http', () => {
                 done();
             });
     });
+
+    it('non-GET verb / error', done => {
+        request
+            .post('/')
+            .end((err, res) => {
+                assert.strictEqual(res.text, 'CANNOT POST /');
+                done();
+            });
+    });
 });
