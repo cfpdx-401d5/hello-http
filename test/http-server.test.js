@@ -9,7 +9,7 @@ describe('testing servers with chai-http', () => {
 
     it('GET / hello stranger', done => {
         request
-            .get('/')
+            .get('/greeting')
             .end((err, res) => {
                 assert.strictEqual(res.text, 'hello stranger');
                 done();
@@ -30,6 +30,15 @@ describe('testing servers with chai-http', () => {
             .get('/greeting/brigitte?salutation=hola')
             .end((err, res) => {
                 assert.strictEqual(res.text, 'hola brigitte');
+                done();
+            });
+    });
+
+    it('GET / fact', done => {
+        request
+            .get('/fact')
+            .end((err, res) => {
+                assert.strictEqual(res.text, 'HTTP stands for Hypertext Transfer Protocol.');
                 done();
             });
     });
