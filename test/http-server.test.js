@@ -31,7 +31,7 @@ describe('test the http server', () => {
         });
     });
 
-    it('GET / responds with instruction to add "greeting" or "fact" in the path', done => {
+    it('GET/ responds with instruction to add "greeting" or "fact" in the path', done => {
         request
         .get('/')
         .end((err, res) => {
@@ -73,27 +73,26 @@ describe('test the http server', () => {
         .end((err, res) => {
             expect(res.text).to.be.at.least('You have gone down a path');
             done();
-        })
-    })
+        });
+    });
 
-    it.skip('GET / returns the response text', done => {
-        request 
-        .get('/')
+    it('GET responds with the given salutation in the query string for a stranger', done => {
+        request
+        .get('/greeting?pass=no_fail&salutation=howdy')
         .end((err, res) => {
-            assert.strictEqual(res.text, 'the query.format is not json');
+            assert.equal(res.text, 'howdy stranger!');
             done();
         });
     });
 
-    it.skip('GET / with json format returns content body', done => {
+    it('GET responds with the given salutation in the query string for <name>', done => {
         request
-        .get('/')
-        .query({format: 'json'})
+        .get('/greeting/kevin')
+        .query({salutation: 'hola'})
         .end((err, res) => {
-            assert.isOk(res.body);
-            assert.deepEqual(res.body, {message: 'reached res.end'});
+            assert.equal(res.text, 'hola Kevin!');
             done();
-        })
-    })
+        });
+    });
 
 });
