@@ -21,6 +21,15 @@ describe('test the http server', () => {
         });
     });
 
+    it('responds with a 404 status code for an unsuccessful request', done => {
+        request
+        .post('/')
+        .end((err, res) => {
+            chai.expect(res.statusCode).to.equal(404);
+            done();
+        });
+    });
+
     it.skip('GET / returns the response text', done => {
         request 
         .get('/')
