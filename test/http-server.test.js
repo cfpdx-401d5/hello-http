@@ -67,6 +67,15 @@ describe('test the http server', () => {
         });
     });
 
+    it('GET with a <= 3 part path responds appropriately', done => {
+        request
+        .get('/1/2/3')
+        .end((err, res) => {
+            expect(res.text).to.be.at.least('You have gone down a path');
+            done();
+        })
+    })
+
     it.skip('GET / returns the response text', done => {
         request 
         .get('/')
