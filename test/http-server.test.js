@@ -62,7 +62,7 @@ describe('test the http server', () => {
         request
         .get('/greeting/kevin')
         .end((err, res) => {
-            assert.equal(res.text, 'Hello kevin!');
+            assert.equal(res.text, 'Hello Kevin!');
             done();
         });
     });
