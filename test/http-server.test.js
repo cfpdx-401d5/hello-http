@@ -48,6 +48,7 @@ describe('testing servers with chai-http', () => {
             .post('/')
             .end((err, res) => {
                 assert.strictEqual(res.text, 'CANNOT POST /');
+                assert.equal(res.statusCode, 404);
                 done();
             });
     });
