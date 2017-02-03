@@ -58,6 +58,15 @@ describe('test the http server', () => {
         })
     });
 
+    it('GET/greeting/<name> responds with "Hello <name>!"', done => {
+        request
+        .get('/greeting/kevin')
+        .end((err, res) => {
+            assert.equal(res.text, 'Hello kevin!');
+            done();
+        });
+    });
+
     it.skip('GET / returns the response text', done => {
         request 
         .get('/')
