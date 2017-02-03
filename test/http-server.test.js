@@ -2,6 +2,7 @@ const chai = require('chai');
 const request = require('superagent');
 const chaiHttp = require('chai-http'); // plugin
 const assert = chai.assert;
+const expect = chai.expect;
 
 // register the chaiHttp plugin
 chai.use(chaiHttp);
@@ -16,7 +17,7 @@ describe('test the http server', () => {
         request
         .get('/')
         .end((err, res) => {
-            chai.expect(res.statusCode).to.equal(200);
+            expect(res.statusCode).to.equal(200);
             done();
         });
     });
@@ -25,9 +26,36 @@ describe('test the http server', () => {
         request
         .post('/')
         .end((err, res) => {
-            chai.expect(res.statusCode).to.equal(404);
+            expect(res.statusCode).to.equal(404);
             done();
         });
+    });
+
+    it('GET / responds with instruction to add "greeting" or "fact" in the path', done => {
+        request
+        .get('/')
+        .end((err, res) => {
+            expect(res.text).to.be.at.least('Try adding "greeting');
+            done();
+        });
+    });
+
+    it('GET/fact responds with a fact', done => {
+        request
+        .get('/fact')
+        .end((err, res) => {
+            expect(res.text).to.be.at.least('from Wikipedia:\nThe first version');
+            done();
+        });
+    });
+
+    it('GET/greeting responds with "Hello stranger!"', done => {
+        request
+        .get('/greeting')
+        .end((err, res) => {
+            assert.equal(res.text, 'Hello stranger!');
+            done();
+        })
     });
 
     it.skip('GET / returns the response text', done => {
