@@ -3,19 +3,24 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const assert = chai.assert;
 const server = require('../lib/http-server');
+const cowsay = require('cowsay');
  
 describe('test the http server :', () => {
 
 	const request = chai.request(server);
 
-	it('test "happy_cow" url', done => {
+	it('tests cowsay salutation', done => {
 		request
-      .get('/salutation/Zen/willkommen/cowsay')
-      .end((err, res) => {
-	if (err) return done(err);
-	assert.strictEqual(res.text, 'moo moo willkommen zen !!!');
-	done();
-});
+			.get('/salutation/Zen/willkommen/cowsay')
+			.end((err, res) => {
+				if (err) return done(err);
+				assert.strictEqual(res.text, cowsay.say( {
+					text: 'moo moo willkommen Zen !!!',
+					e: '@@',
+					T: 'U '
+				}));
+				done();
+			});
 	});
 
 	it('tests "/greeting" url', done => {
