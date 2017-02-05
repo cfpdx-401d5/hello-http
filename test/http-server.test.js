@@ -8,15 +8,15 @@ describe('test the http server :', () => {
 
 	const request = chai.request(server);
 
-	// it('test "happy_cow" url', done => {
-	// 	request
-  //     .get('/happy_cow')
-  //     .end((err, res) => {
-	// 			if (err) return done(err);
-	// 			assert.strictEqual(res.text, 'hello wonderful world!');
-	// 			done();
-	// 		});
-	// });
+	it('test "happy_cow" url', done => {
+		request
+      .get('/salutation/Zen/willkommen/cowsay')
+      .end((err, res) => {
+	if (err) return done(err);
+	assert.strictEqual(res.text, 'moo moo willkommen zen !!!');
+	done();
+});
+	});
 
 	it('tests "/greeting" url', done => {
 		request
