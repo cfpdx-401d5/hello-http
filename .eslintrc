@@ -16,6 +16,7 @@
     "rules": {
         "no-console": "off",
         "no-mixed-spaces-and-tabs": "off",
+        "no-unused-vars": 1,
         "indent": [
             "error",
             "tab"
