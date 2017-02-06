@@ -3,15 +3,17 @@
 
 ## Directions
 
-Change the "interesting fact" route to use an random entry from an in-memory array (that has at least one seeded fact). See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random for how to generate a random number.
+Change the "interesting fact" route to return a list of all the interesting facts (maybe rename to `/facts` instead of `/fact`
 
-Add a post method for the `/fact` route that adds the posted body (if it exists) to the in-memory fact array. 
-The post should return the new length of facts.
+Add a post method for the `/fact` route that adds the posted body (if it exists) to the in-memory fact array. The post should return the same info that was posted.
 
 ## Testing
 
-* Add a test that verifies that post works (post returns with correct number). Because the return is random, 
-don't try and test that the posted fact appears in the `GET /fact` (though try it out manually).
+* Add tests for posting fact. Both the actual POST operation, and subsequent GET includes that fact.
+
+## Bonus
+
+Store your interesting facts in mongodb! (Don't worry about tests because you don't know how to drop db yet)
 
 ## Rubric
 
