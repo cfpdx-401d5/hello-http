@@ -3,7 +3,7 @@
 
 ## Directions
 
-Change the "interesting fact" route to use an random entry from an in-memory array (that has at least one seeded fact).
+Change the "interesting fact" route to use an random entry from an in-memory array (that has at least one seeded fact). See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random for how to generate a random number.
 
 Add a post method for the `/fact` route that adds the posted body (if it exists) to the in-memory fact array. 
 The post should return the new length of facts.
