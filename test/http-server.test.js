@@ -1,6 +1,7 @@
 const chai = require('chai');
 const request = require('superagent');
 const chaiHttp = require('chai-http'); // plugin
+const fs = require('fs-promise');
 const assert = chai.assert;
 const expect = chai.expect;
 
@@ -101,22 +102,25 @@ describe('test the POST request', () => {
 
     const request = chai.request(server);
 
-    it('responds with a 200 status code for a successful POST request', done => {
+    it('responds to POSTS that are not to /facts', done => {
         request
-            .post('/')
+            .post('/notfacts')
             .end((err, res) => {
-                expect(res.statusCode).to.equal(200);
+                expect(res.statusCode).to.equal(400);
+                expect(res.text).to.be.at.least('Try making a post to');
                 done();
             });
     });
 
-    it.skip('POST only posts to /facts', () => {
+    it('POST only posts to /facts', done => {
         request
             .post('/facts')
+            .send('fact will go here')
             .end((err, res) => {
-
-                done(); 
+                assert.equal(res.statusCode, 200);
+                assert.deepEqual(res.text, 'fact will go here');
+                done();
             });
-    })
+    });
 
 });
