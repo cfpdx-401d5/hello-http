@@ -21,3 +21,41 @@ Store your interesting facts in mongodb! (Don't worry about tests because you do
 * Read and deserialize body: 4pts
 * Correctly manage facts: 2pts
 * Tests: 2pts
+
+==========================================================
+
+The salutation and cowsay should be recognize as a query string. Not as a URI segment. For example...
+
+http://localhost:3000/greeting?salutation=hola
+
+http://localhost:3000/greeting?salutation=hola&format=cowsay
+
+http://localhost:3000/greeting/tom?salutation=hola
+
+http://localhost:3000/greeting/tom?salutation=hola&format=cowsay
+
+On line 9 of your http-server.js file, you have access to the query params from that variable/object. Use that to add in your logic.
+
+All other GET request paths other than /greeting, /greeting/<name>, and /fact should be a 404 page.
+
+=========================================================
+
+The querystring.parse() method parses a URL query string (str) into a collection of key and value pairs.
+
+For example, the query string 'foo=bar&abc=xyz&abc=123' is parsed into:
+
+{
+  foo: 'bar',
+  abc: ['xyz', '123']
+}
+==========================================================
+url.pathname#
+Gets and sets the path portion of the URL.
+
+const myURL = new URL('https://example.org/abc/xyz?123');
+console.log(myURL.pathname);
+  // Prints /abc/xyz
+
+myURL.pathname = '/abcdef';
+console.log(myURL.href);
+  // Prints https://example.org/abcdef?123
