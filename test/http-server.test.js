@@ -4,26 +4,26 @@ const assert = chai.assert;
 
 chai.use(chaiHttp);
 
-describe('chai-http', () => {
+const server = require('../lib/http-server');
 
-    const request = chai.request('http://google.com');
+describe('testing http servers with chai-http', () => {
 
-    it('gets google', done => {
+    const request = chai.request(server);
+
+    it('GET / says hello world!', done => {
         request
             .get('/')
             .end((err, res) => {
-                assert.isOk(res.text);
-                console.log(res.text);
+                assert.strictEqual(res.text, 'hello world!');
                 done();
             })
     });
 
-    it('gets google maps', done => {
+    it('POST / not accepting posts at this time', done => {
         request
-            .get('/maps')
+            .get('/')
             .end((err, res) => {
-                assert.isOk(res.text);
-                console.log(res.text);
+                assert.strictEqual(res.text, 'not accepting posts at this time');
                 done();
             })
     });
