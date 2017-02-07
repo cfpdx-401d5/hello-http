@@ -1,7 +1,6 @@
 const chai = require('chai');
 const request = require('superagent');
 const chaiHttp = require('chai-http'); // plugin
-const fs = require('fs-promise');
 const assert = chai.assert;
 const expect = chai.expect;
 
@@ -41,13 +40,20 @@ describe('test the GET request', () => {
             });
     });
 
-    it('GET/fact responds with a fact', done => {
+    it('GET/facts responds with all facts', done => {
         request
-            .get('/fact')
+            .post('/facts')
+            .send('factoid')
             .end((err, res) => {
-                expect(res.text).to.be.at.least('from Wikipedia:\nThe first version');
-                done();
+                request
+                    .get('/facts')
+                    .end((err, res) => {
+                        // console.log('facts is..', facts);
+                        assert.equal(res.text, 'factoid');
+                        done();
+                    });
             });
+        
     });
 
     it('GET/greeting responds with "Hello stranger!"', done => {
