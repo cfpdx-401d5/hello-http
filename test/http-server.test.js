@@ -21,7 +21,7 @@ describe('testing http servers with chai-http', () => {
 
     it('POST / not accepting posts at this time', done => {
         request
-            .get('/')
+            .post('/')
             .end((err, res) => {
                 assert.strictEqual(res.text, 'not accepting posts at this time');
                 done();
