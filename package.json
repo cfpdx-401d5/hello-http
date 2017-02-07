@@ -18,6 +18,7 @@
   "homepage": "https://github.com/mericks/hello-http#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "mocha": "^3.2.0",
     "superagent": "^3.4.1"
   }
