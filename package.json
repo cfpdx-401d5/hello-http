@@ -1,0 +1,23 @@
+{
+  "name": "6-hello-http",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mericks/hello-http.git"
+  },
+  "author": "mericks",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mericks/hello-http/issues"
+  },
+  "homepage": "https://github.com/mericks/hello-http#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
