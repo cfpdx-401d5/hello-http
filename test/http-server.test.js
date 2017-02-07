@@ -8,11 +8,25 @@ const server = require('../lib/http-server');
 describe('testing the http server that I made', () => {
     const request = chai.request(server);
 
-    it('provides a fact', done => {
+    var factual2 = '\n  "this is a fact about http"\n]';
+
+    it('checks the POST method', done => {
         request
-            .get('/fact')
+            .post('/facts')
+            .send('this is a fact about http')
             .end((err, response) => {
-                assert.strictEqual(response.text, 'a more secure version of http is called http, it encrypts all of the information it sends and receives');
+                assert.strictEqual(response.text, 'this is a fact about http');
+                assert.equal(response.statusCode, 200);
+                done();
+        });            
+    });
+    it('checks that the POST method is added with the GET method', done => {
+        request
+            .get('/facts')
+            .end((err, response) => {
+                let responseDisplay = response.text.split(',').pop();
+                assert.equal(responseDisplay, factual2)
+                assert.equal(response.statusCode, 200);
                 done();
         });
     });
