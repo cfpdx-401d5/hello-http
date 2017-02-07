@@ -5,7 +5,7 @@
 
 Change the "interesting fact" route to return a list of all the interesting facts (maybe rename to `/facts` instead of `/fact`
 
-Add a post method for the `/fact` route that adds the posted body (if it exists) to the in-memory fact array. The post should return the same info that was posted.
+Add a post method for the `/facts` route that adds the posted body (if it exists) to the in-memory fact array. The post should return the same info that was posted.
 
 ## Testing
 
