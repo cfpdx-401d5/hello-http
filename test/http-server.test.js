@@ -69,9 +69,18 @@ describe('test the http server :', () => {
 			.get('/facts')
 			.end((err, res) => {
 				if (err) return done(err);
-				assert.strictEqual(res, 'HTTP is short for hyper-text transfer protocol', 'dogs have fleas');
+				assert.strictEqual(res.text, '["http is short for hyper-text transfer protocol","https is secure http"]');
 				done();
 			});
+	});
+
+	it('tests POST of new facts to "/facts"', done => {
+		request
+			.post('/facts')
+			.end((err, res) => {
+				if (err) return done(err);
+				assert.strictEqual(res.text, )
+			})
 	});
 
 	it('tests "/" url', done => {
