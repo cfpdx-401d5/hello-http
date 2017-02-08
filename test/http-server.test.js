@@ -7,7 +7,6 @@ chai.use(chaiHttp);
 const server = require('../lib/http-server');
 
 describe('test greetings - http server', () => {
-
     const request = chai.request(server);
 
     it('GET / greeting stranger', done => {
@@ -46,18 +45,10 @@ describe('test greetings - http server', () => {
             });
     });
 
-    it('GET / no greeting or salutation', done => {
-        request
-            .get('/')
-            .end((err, res) => {
-                assert.strictEqual(res.text, 'Who are you?');
-                done();
-            });
-    });
-
 })
 
-describe('test facts - http server', () => {
+describe('test fact - http server', () => {
+    const request = chai.request(server);
 
     it('GET / fact', done => {
         request
@@ -67,5 +58,30 @@ describe('test facts - http server', () => {
                 done();
             })
     })
+
+})
+
+describe('all other requests', () => {
+    const request = chai.request(server);
+
+    it('GET / index', done => {
+        request
+            .get('/')
+            .end((err, res) => {
+                assert.strictEqual(res.status, 404);
+                assert.strictEqual(res.text, `CANNOT ${req.method} ${req.pathName}`);
+                done();
+            })
+    });
+
+    it('GET / facts', done => {
+        request
+            .get('/facts')
+            .end((err, res) => {
+                assert.strictEqual(res.status, 404);
+                assert.strictEqual(res.text, `CANNOT ${req.method} ${req.pathName}`);
+                done();
+            })
+    });
 
 })
