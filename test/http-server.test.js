@@ -6,26 +6,54 @@ chai.use(chaiHttp);
 
 const server = require('../lib/http-server');
 
-describe('testing http servers with chai-http', () => {
+describe('test greetings - http server', () => {
 
     const request = chai.request(server);
 
-    it('GET / says hello world!', done => {
+    it('GET / greeting stranger', done => {
+        request
+            .get('/greeting')
+            .end((err, res) => {
+                assert.strictEqual(res.text, 'hello stranger!');
+                done();
+            });
+    });
+
+    it('GET / greeting name', done => {
+        request
+            .get('/greeting/mel')
+            .end((err, res) => {
+                assert.strictEqual(res.text, 'hello mel!');
+                done();
+            });
+    });
+
+    it('GET / salutation stranger', done => {
+        request
+            .get('/greeting/?salutation=howdy')
+            .end((err, res) => {
+                assert.strictEqual(res.text, 'howdy stranger!');
+                done();
+            });
+    });
+
+    it('GET / salutation name', done => {
+        request
+            .get('/greeting/jana?salutation=bonjour')
+            .end((err, res) => {
+                assert.strictEqual(res.text, 'bonjour jana!');
+                done();
+            });
+    });
+
+    it('GET / no greeting or salutation', done => {
         request
             .get('/')
             .end((err, res) => {
-                assert.strictEqual(res.text, 'hello world!');
+                assert.strictEqual(res.text, 'Who are you?');
                 done();
-            })
+            });
     });
 
-    it('POST / not accepting posts at this time', done => {
-        request
-            .post('/')
-            .end((err, res) => {
-                assert.strictEqual(res.text, 'not accepting posts at this time');
-                done();
-            })
-    });
 
 })
