@@ -44,12 +44,13 @@ describe('test the GET request', () => {
         request
             .post('/facts')
             .send('factoid')
+            // .send('anotherOne')
             .end((err, res) => {
+                const expectedVal = JSON.stringify([res.text]);
                 request
                     .get('/facts')
                     .end((err, res) => {
-                        // console.log('facts is..', facts);
-                        assert.equal(res.text, 'factoid');
+                        assert.equal(res.text, expectedVal);
                         done();
                     });
             });
@@ -112,6 +113,7 @@ describe('test the POST request', () => {
         request
             .post('/notfacts')
             .end((err, res) => {
+                // change to 404
                 expect(res.statusCode).to.equal(400);
                 expect(res.text).to.be.at.least('Try making a post to');
                 done();
