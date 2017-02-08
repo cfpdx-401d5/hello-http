@@ -55,5 +55,17 @@ describe('test greetings - http server', () => {
             });
     });
 
+})
+
+describe('test facts - http server', () => {
+
+    it('GET / fact', done => {
+        request
+            .get('/fact')
+            .end((err, res) => {
+                assert.strictEqual(res.text, 'HTTP stands for Hypertext Transfer Protocol');
+                done();
+            })
+    })
 
 })
