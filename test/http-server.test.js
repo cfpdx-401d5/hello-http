@@ -24,7 +24,7 @@ describe('test the http server :', () => {
 			});
 	});
 
-	it('tests "/greeting" url', done => {
+	it('tests "/greeting" url', done => {  // this test works !!!
 		request
 			.get('/greeting')
 			.end((err, res) => {
@@ -34,7 +34,7 @@ describe('test the http server :', () => {
 		done();
 	});
 
-	it('tests "/greeting/<name>" url', done => {
+	it('tests "/greeting/<name>" url', done => {  // this test works !!!
 		request
 			.get('/greeting/Zen')
 			.end((err, res) => {
@@ -44,37 +44,37 @@ describe('test the http server :', () => {
 		done();
 	});
 
-	it('tests "/greeting?salutation=willkommen" url', done => {
+	it('tests "/greeting?salutation=willkommen" url', done => {  // this test works !!!
 		request
 			.get('/greeting?salutation=willkommen')
 			.end((err, res) => {
 				if (err) return done(err);
 				assert.strictEqual(res.text, 'willkommen stranger');
-				done();
 			});
+		done();
 	});	
 
-	it.skip('tests "/salutation/<name>/<altGreeting>" url', done => {
+	it('tests "/greeting/<name>?salutation=<altGreeting>" url', done => {  // this test works !!!
 		request
-			.get('/salutation/Zen/willkommen')
+			.get('/greeting/Zen?salutation=willkommen')
 			.end((err, res) => {
 				if (err) return done(err);
-				assert.strictEqual(res.text, 'willkommen Zen');
+				assert.strictEqual(res.text, 'willkommen Zen');	
+			});
+		done();	
+	});
+
+	it('tests "/facts" url', done => {
+		request
+			.get('/facts')
+			.end((err, res) => {
+				if (err) return done(err);
+				assert.strictEqual(res, 'HTTP is short for hyper-text transfer protocol', 'dogs have fleas');
 				done();
 			});
 	});
 
-	it.skip('tests "/fact" url', done => {
-		request
-			.get('/fact')
-			.end((err, res) => {
-				if (err) return done(err);
-				assert.strictEqual(res.text, 'HTTP is short for hyper-text transfer protocol');
-				done();
-			});
-	});
-
-	it.skip('tests "/" url', done => {
+	it('tests "/" url', done => {
 		request
 			.get('/')
 			.end((err, res) => { 
@@ -84,7 +84,7 @@ describe('test the http server :', () => {
 			});
 	});
 
-	it.skip('tests url method other than "/GET" url', done => {
+	it('tests url method other than "/GET" url', done => {
 		request
 			.post('/salutation/Zen/hola')
 			.end((err, res) => {
