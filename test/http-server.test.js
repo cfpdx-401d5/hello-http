@@ -68,8 +68,8 @@ describe('all other requests', () => {
         request
             .get('/')
             .end((err, res) => {
-                assert.strictEqual(res.status, 404);
-                assert.strictEqual(res.text, `CANNOT ${req.method} ${req.pathName}`);
+                assert.strictEqual(res.statusCode, 404);
+                assert.strictEqual(res.text, 'CANNOT GET /');
                 done();
             })
     });
@@ -79,9 +79,20 @@ describe('all other requests', () => {
             .get('/facts')
             .end((err, res) => {
                 assert.strictEqual(res.status, 404);
-                assert.strictEqual(res.text, `CANNOT ${req.method} ${req.pathName}`);
+                assert.strictEqual(res.text, 'CANNOT GET /facts');
                 done();
             })
     });
+
+        it('POST / data', done => {
+        request
+            .post('/data')
+            .end((err, res) => {
+                assert.strictEqual(res.status, 404);
+                assert.strictEqual(res.text, 'CANNOT POST /data');
+                done();
+            })
+    });
+
 
 })
