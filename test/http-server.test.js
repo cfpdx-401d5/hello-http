@@ -8,7 +8,7 @@ const server = require('../lib/http-server');
 describe('testing the http server that I made', () => {
     const request = chai.request(server);
 
-    var factual2 = '\n  "this is a fact about http"\n]';
+    var factual2 = "this is a fact about http";
 
     it('checks the POST method', done => {
         request
@@ -24,8 +24,10 @@ describe('testing the http server that I made', () => {
         request
             .get('/facts')
             .end((err, response) => {
-                let responseDisplay = response.text.split(',').pop();
-                assert.equal(responseDisplay, factual2)
+                let responseDisplay = response.text.split(',\n').pop();
+                var answer =  responseDisplay.substr(0, responseDisplay.length-3);
+                var actual = answer.substr(3);
+                assert.equal(actual, factual2)
                 assert.equal(response.statusCode, 200);
                 done();
         });
