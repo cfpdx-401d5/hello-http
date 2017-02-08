@@ -36,8 +36,10 @@ In your browser, you can type the following to get the corresponding greeting:
 `localhost:3000/greeting/claire/salutation=hola`<br>
 `hola claire`
 
-You can also type the following to get an interesting fact about HTTP:
+You can also type the following to get a list of interesting facts about HTTP:
 
 ## Fact about HTTP
-### localhost:3000/fact
-`a more secure version of http is called http, it encrypts all of the information it sends and receives`
+### localhost:3000/facts
+`a more secure version of http is called https', 'http is the protocol to exchange or transfer hypertext', 'http functions as a request-response protocol in the client-server computing model`
+
+You can also post a new fact at the same URL and get a returned list of the facts plus your new one added!
