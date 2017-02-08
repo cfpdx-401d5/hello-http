@@ -54,7 +54,7 @@ describe('testing servers with chai-http', () => {
     });
 
     let sentFact = 'I like pandas.';
-    
+
     it('POST /facts', done => {
         request
             .post('/facts')
@@ -84,5 +84,15 @@ describe('testing servers with chai-http', () => {
                 assert.strictEqual(res.text, `please send valid fact`);
                 done();
             });
+    });
+
+    it('POST not /facts', done => {
+        request
+            .post('/')
+            .end((err, res) => {
+                assert.equal(res.statusCode, 404);
+                assert.strictEqual(res.text, 'please start path with "/facts" to post');
+                done();
+            })
     });
 });
