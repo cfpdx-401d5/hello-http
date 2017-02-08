@@ -16,7 +16,7 @@ Run `node server.js` to start server. Default port number is `3000`. So, the bas
 Browser responds with default greeting: `hello stranger`
 
 ```
-/greeting
+GET /greeting
 ```
 
 ### Personalized greeting
@@ -24,7 +24,7 @@ Browser responds with default greeting: `hello stranger`
 Browser responds with personalized greeting: `hello <name>`
 
 ```
-/greeting/<name>
+GET /greeting/<name>
 ```
 
 ### Personalized greeting and salutation
@@ -32,7 +32,7 @@ Browser responds with personalized greeting: `hello <name>`
 Browser responds with personalized greeting and salutation: `<salutation> <name>`
 
 ```
-/greeting/<name>?salutation=<salutation>
+GET /greeting/<name>?salutation=<salutation>
 ```
 
 ### Personalized greeting and salutation
@@ -47,7 +47,7 @@ Browser responds with greeting said by a cow (personalized greeting and salution
                 ||----w |
                 ||     ||
 ```
-/greeting?format=cowsay
+GET /greeting?format=cowsay
 ```
 
 ## API for Facts
@@ -57,7 +57,7 @@ Browser responds with greeting said by a cow (personalized greeting and salution
 Browser responds with list of HTTP facts:
 
 ```
-/facts
+GET /facts
 ```
 
 ### Post Facts
