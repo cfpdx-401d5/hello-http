@@ -81,4 +81,38 @@ describe('basic server function', () => {
                 done();
             });
     });
+
+    it('POST /fact returns array with new fact added', done => {
+        request
+            .post('/facts')
+            .send({ message: "The h stands for hyper." })
+            .end((err, res) => {
+                assert.strictEqual(res.text, '"The h stands for hyper."');
+                done();
+            })
+    });
+
+    it('return an array containing a new fact', done => {
+        request
+            .get('/facts')
+            .end((err, res) => {
+                if (err) console.log('fail: ', err);
+                assert.notInclude(res.text, "The term hypertext was coined by Ted Nelson in 1965 in the Xanadu Project.");
+            });
+
+        request
+            .post('/facts')
+            .send({ message: 'The term hypertext was coined by Ted Nelson in 1965 in the Xanadu Project.' })
+            .end((err, res) => {
+                assert.strictEqual(res.text, '"The term hypertext was coined by Ted Nelson in 1965 in the Xanadu Project."');
+            });
+
+        request
+            .get('/facts')
+            .end((err, res) => {
+                assert.include(res.text, '"The term hypertext was coined by Ted Nelson in 1965 in the Xanadu Project."');
+                done();
+            })
+    });
+
 });
