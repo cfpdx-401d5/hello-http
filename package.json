@@ -1,0 +1,31 @@
+{
+    "name": "hello-http",
+    "version": "1.0.0",
+    "description": "Hello World HTTP server. This server application will establish connection, and other small things.",
+    "main": "index.js",
+    "dependencies": {},
+    "devDependencies": {
+        "chai-http": "^3.0.0",
+        "superagent": "^3.4.1"
+    },
+    "scripts": {
+        "test": "mocha"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/krogseng/hello-http.git"
+    },
+    "keywords": [
+        "http",
+        "lab",
+        "401",
+        "codefellows",
+        "javascript"
+    ],
+    "author": "Lynn Krogseng",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/krogseng/hello-http/issues"
+    },
+    "homepage": "https://github.com/krogseng/hello-http#readme"
+}
