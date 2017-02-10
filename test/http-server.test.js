@@ -30,8 +30,8 @@ describe('test the http server :', () => {
 			.end((err, res) => {
 				if (err) return done(err);
 				assert.strictEqual(res.text, 'hello stranger');
+				done();
 			});
-		done();
 	});
 
 	it('tests "/greeting/<name>" url', done => {  // this test works !!!
@@ -40,8 +40,8 @@ describe('test the http server :', () => {
 			.end((err, res) => {
 				if (err) return done(err);
 				assert.strictEqual(res.text, 'hello Zen');
+				done();
 			});
-		done();
 	});
 
 	it('tests "/greeting?salutation=willkommen" url', done => {  // this test works !!!
@@ -50,8 +50,8 @@ describe('test the http server :', () => {
 			.end((err, res) => {
 				if (err) return done(err);
 				assert.strictEqual(res.text, 'willkommen stranger');
+				done();
 			});
-		done();
 	});	
 
 	it('tests "/greeting/<name>?salutation=<altGreeting>" url', done => {  // this test works !!!
@@ -60,8 +60,8 @@ describe('test the http server :', () => {
 			.end((err, res) => {
 				if (err) return done(err);
 				assert.strictEqual(res.text, 'willkommen Zen');	
-			});
-		done();	
+				done();
+			});	
 	});
 
 	it('tests "/facts" url', done => {
@@ -70,8 +70,8 @@ describe('test the http server :', () => {
 			.end((err, res) => {
 				if (err) return done(err);
 				assert.strictEqual(res.text, '["http is short for hyper-text transfer protocol","https is secure http"]');
+				done();
 			});
-		done();
 	});
 
 	it('tests POST of new facts to "/facts"', done => {
@@ -80,29 +80,27 @@ describe('test the http server :', () => {
 			.send('new fact for facts')
 			.end((err, res) => {
 				if (err) return done(err);
-				assert.strictEqual(res.text, '["http is short for hyper-text transfer protocol","https is secure http","new fact for facts"]');
+				assert.strictEqual(res.text, 'new fact for facts');
+				done();
 			});
-		done();
 	});
 
 	it('tests "/" url', done => {
 		request
 			.get('/')
 			.end((err, res) => { 
-				if (err) return done(err);		
-				assert.deepEqual(res.text, '404 - Not Found ... try adding "/greeting" to this url');
+				assert.equal(err.response.statusCode, 404);		
+				done();
 			});
-		done();
 	});
 
 	it('tests url method other than "/GET" url', done => {
 		request
-			.post('/salutation/Zen/hola')
+			.put('/salutation/Zen/hola')
 			.end((err, res) => {
-				if (err) return done(err);
-				assert.strictEqual(res.text, '404 - http method POST is not supported');
+				assert.equal(err.response.statusCode, 404);				
+				done();
 			});
-		done();
 			
 	});
 
