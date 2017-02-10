@@ -96,7 +96,7 @@ describe('test the http server :', () => {
 
 	it('tests url method other than "/GET" url', done => {
 		request
-			.put('/salutation/Zen/hola')
+			.put('/greeting/Zen?salutation=willkommen')
 			.end((err, res) => {
 				assert.equal(err.response.statusCode, 404);				
 				done();
