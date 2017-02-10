@@ -34,22 +34,65 @@ describe('testing servers with chai-http', () => {
             });
     });
 
-    it('GET / fact', done => {
+    it('GET / facts', done => {
         request
-            .get('/fact')
+            .get('/facts')
             .end((err, res) => {
-                assert.strictEqual(res.text, 'HTTP stands for Hypertext Transfer Protocol.');
+                assert.isOk(res.text, []);
                 done();
             });
     });
 
     it('non-GET verb / error', done => {
         request
-            .post('/')
+            .delete('/')
             .end((err, res) => {
-                assert.strictEqual(res.text, 'CANNOT POST /');
+                assert.strictEqual(res.text, 'CANNOT DELETE /');
                 assert.equal(res.statusCode, 404);
                 done();
             });
+    });
+
+    let sentFact = 'I like pandas.';
+
+    it('POST /facts', done => {
+        request
+            .post('/facts')
+            .send(sentFact)
+            .end((err, res) => {
+                assert.strictEqual(res.text, sentFact);
+                assert.equal(res.statusCode, 201);
+                done();
+            });
+    });
+
+    it('GET /facts returns posted fact', done => {
+        request
+            .get('/facts')
+            .end((err, res) => {
+                let resFact = res.text.split(',').pop();
+                assert.deepEqual(resFact, sentFact)
+                done();
+            });
+    });
+
+    it('POST /facts with no data', done => {
+        request
+            .post('/facts')
+            .end((err, res) => {
+                assert.equal(res.statusCode, 400);
+                assert.strictEqual(res.text, `please send valid fact`);
+                done();
+            });
+    });
+
+    it('POST not /facts', done => {
+        request
+            .post('/')
+            .end((err, res) => {
+                assert.equal(res.statusCode, 404);
+                assert.strictEqual(res.text, 'please start path with "/facts" to post');
+                done();
+            })
     });
 });
