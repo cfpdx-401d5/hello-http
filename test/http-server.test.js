@@ -6,6 +6,9 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
 const server = require('../lib/http-server');
+const factArray = ['Development of HTTP was initiated by Tim Berners-Lee at CERN in 1989',
+    'H stands for Hyper', 'T stands for Text and Transfer', 'P stands for Protocol'
+];
 // if I build a class instead...?
 
 
@@ -49,12 +52,22 @@ describe('testing http request/response with chai-http', () => {
             });
     });
 
-    it('POST / says "Cannot POST ', done => {
+    it('GET / facts for whole arrary', done => {
         request
-            .post('/')
+            .get('/facts')
             .end((err, res) => {
-                assert.strictEqual(res.text, 'Cannot POST ');
-                assert.strictEqual(res.statusCode, 404);
+                res.text = JSON.parse(res.text);
+                assert.deepEqual(res.text, factArray);
+                done();
+            })
+    })
+
+    it('POST / posts new facts', done => {
+        request
+            .post('/facts')
+            .send({ message: 'You received 200 POST' })
+            .end((err, res) => {
+                assert.strictEqual(res.text, '"You received 200 POST"');
                 done();
             });
     });

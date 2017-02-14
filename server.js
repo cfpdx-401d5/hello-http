@@ -1,5 +1,5 @@
 // get the server started
-const server = require('../lib/http-server');
+const server = require('./lib/http-server');
 const PORT = 3000;
 
 server.listen(PORT, () => {
