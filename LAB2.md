@@ -20,4 +20,8 @@ Store your interesting facts in mongodb! (Don't worry about tests because you do
 * HTTP Path and Verb: 2pts
 * Read and deserialize body: 4pts
 * Correctly manage facts: 2pts
+<<<<<<< HEAD
 * Tests: 2pts
+=======
+* Tests: 2pts
+>>>>>>> krogseng
