@@ -21,7 +21,11 @@ Store your interesting facts in mongodb! (Don't worry about tests because you do
 * Read and deserialize body: 4pts
 * Correctly manage facts: 2pts
 <<<<<<< HEAD
+<<<<<<< HEAD
 * Tests: 2pts
 =======
 * Tests: 2pts
 >>>>>>> krogseng
+=======
+* Tests: 2pts
+>>>>>>> mizutombo
